@@ -31,15 +31,20 @@ const Home = () => {
 
     useEffect(() => {
         getBloodRecords();
+        console.log("User role: ", user?.role);
+        if (user?.role === "admin" || user?.role === "organisation")  {
+            // navigate("/admin");
+        }
+    }, [user?.role, navigate]
 
-    }, [])
+    )
 
 
 
     return (
 
         <Layout>
-            {user?.role === "admin" && navigate("/admin")}
+
             {error && <span>{alert(error)}</span>}
             {loading ? <Spinner /> : (
                 <>

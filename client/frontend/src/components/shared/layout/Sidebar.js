@@ -11,11 +11,11 @@ const Sidebar = () => {
         <div>
             <div className='sidebar' >
                 <div className='menu'>
-                    {user?.role === 'organisation' ||user?.role === 'admin' && (
+                    {(user?.role === 'admin' || user?.role === 'organisation') && (
                         <>
-                            <div className={`menu-item ${location.pathname === '/' && 'active'}`}>
+                            <div className={`menu-item ${location.pathname === '/admin/inventory' && 'active'}`}>
                                 <i className="fa-solid fa-warehouse"></i>
-                                <Link to="/">Inventory</Link>
+                                <Link to="/admin/inventory">Inventory</Link>
                             </div>
                             <div className={`menu-item ${location.pathname === '/donor' && 'active'}`}>
                                 <i className="fa-solid fa-hand-holding-medical"></i>

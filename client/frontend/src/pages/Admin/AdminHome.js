@@ -23,8 +23,26 @@ const AdminHome = () => {
                         doloremque vel officiis ducimus. Fugiat vero nam tempore pariatur optio cupiditate assumenda doloribus
                         sequi, illo dolorum corrupti ad quo ex sunt!
                     </p>
+
+                    <p>
+                        <hr />
+                        {/* Add content for both Admin and Organisation functionality */}
+                        {user?.role === 'admin' && (
+                            <>
+                                <h5>Admin Overview</h5>
+                                <p>As an admin, you have full access to manage inventories, donors, hospitals, and organisations.</p>
+                            </>
+                        )}
+                        {user?.role === 'organisation' && (
+                            <>
+                                <h5>Organisation Overview</h5>
+                                <p>As an organisation, you are able to manage the donor and hospital relations for the system.</p>
+                            </>
+                        )}
+                    </p>
                 </div>
             </div>
+
         </Layout>
     )
 }

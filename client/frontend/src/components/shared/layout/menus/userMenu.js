@@ -1,7 +1,7 @@
 export const userMenu = [
     {
         name: "Inventory",
-        path: '/',
+        path: '/admin/inventory',
         icon: "fa-solid fa-warehouse"
     }
 

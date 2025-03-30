@@ -26,7 +26,9 @@ function App() {
         <Route path='/admin' element={
           <ProtectedRoute>
             <AdminHome />
+            
           </ProtectedRoute>
+          
         }></Route>
 
 
@@ -76,7 +78,7 @@ function App() {
             <Organisation />
           </ProtectedRoute>
         }></Route>
-        <Route path='/' element={
+        <Route path='/admin/inventory' element={
           <ProtectedRoute>
             <Home />
           </ProtectedRoute>
