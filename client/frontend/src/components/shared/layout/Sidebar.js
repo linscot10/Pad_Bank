@@ -11,7 +11,7 @@ const Sidebar = () => {
         <div>
             <div className='sidebar' >
                 <div className='menu'>
-                    {user?.role === 'organisation' && (
+                    {user?.role === 'organisation' ||user?.role === 'admin' && (
                         <>
                             <div className={`menu-item ${location.pathname === '/' && 'active'}`}>
                                 <i className="fa-solid fa-warehouse"></i>

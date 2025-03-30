@@ -16,16 +16,21 @@ import HospitalList from './pages/Admin/HospitalList';
 import OrgList from './pages/Admin/OrgList';
 import AdminHome from './pages/Admin/AdminHome';
 
+
 function App() {
   return (
     < >
       <ToastContainer />
+
       <Routes>
         <Route path='/admin' element={
           <ProtectedRoute>
             <AdminHome />
           </ProtectedRoute>
         }></Route>
+
+
+
         <Route path='/donor' element={
           <ProtectedRoute>
             <Donor />

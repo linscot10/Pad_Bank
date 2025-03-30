@@ -4,7 +4,7 @@ userSchema = new mongoose.Schema({
     role: {
         type: String,
         required: [true, 'Role is required'],
-        enum: ['donor', 'admin', 'organisation', 'hospital']
+        enum: ['donor', 'admin', 'organisation', 'school']
     },
     name: {
         type: String,
@@ -24,7 +24,7 @@ userSchema = new mongoose.Schema({
             return false
         }
     },
-    hospitalName: {
+    schoolName: {
         type: String,
         required: function () {
             if (this.role === 'hospital') {
@@ -59,4 +59,3 @@ userSchema = new mongoose.Schema({
 module.exports = mongoose.model('User', userSchema)
 
 
-// 7.00

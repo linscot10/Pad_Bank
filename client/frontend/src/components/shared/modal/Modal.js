@@ -50,7 +50,7 @@ const Modal = () => {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h1 className="modal-title fs-5" id="staticBackdropLabel">
-                                Manage Blood Records
+                                Manage Pad Records
                             </h1>
                             <button
                                 type="button"
