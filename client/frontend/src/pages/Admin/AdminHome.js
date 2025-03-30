@@ -11,7 +11,7 @@ const AdminHome = () => {
             <div class="container">
                 <div class="d-flex flex-column mt-4">
                     <h1>Welcome Admin <i className='text-success '>{user?.name}</i></h1>
-                    <h3>Manage Blood Bank App</h3>
+                    <h3>Manage Sanitary Pad Bank App</h3>
                     <p>
                         <hr />
                         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus expedita doloribus blanditiis deserunt

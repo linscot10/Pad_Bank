@@ -75,7 +75,7 @@ const Home = () => {
                                     </tr>
                                 ))) : (
                                     <tr>
-                                        <td colSpan="5">No records available</td>
+                                        <td colSpan="5">No records available here</td>
                                     </tr>
                                 )}
 
