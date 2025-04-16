@@ -8,7 +8,7 @@ const inventorySchema = new mongoose.Schema({
     },
     bloodGroup: {
         type: String,
-        required: [true, "Blodd Group required"],
+        required: [true, "Blood Group required"],
         enum: ['O+', 'O-', 'AB+', 'AB-', 'A+', 'A-', 'B+', 'B-']
     },
     quantity: {
@@ -24,7 +24,7 @@ const inventorySchema = new mongoose.Schema({
         ref: 'User',
         required: [true, 'organisation is required']
     },
-    hospital: {
+    school: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: function () {

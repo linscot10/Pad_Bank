@@ -27,7 +27,7 @@ userSchema = new mongoose.Schema({
     schoolName: {
         type: String,
         required: function () {
-            if (this.role === 'hospital') {
+            if (this.role === 'school') {
                 return true
             }
             return false
