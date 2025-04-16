@@ -74,7 +74,7 @@ const createInventoryController = async (req, res) => {
                     message: `Only ${availableQuantityOfBloodGroup}ML of ${requestedBloodGroup.toUpperCase()} is available`
                 })
             }
-            req.body.hospital = user?._id;
+            req.body.school = user?._id;
         }
         else {
             req.body.donor = user?._id
@@ -111,7 +111,7 @@ const getInventoryController = async (req, res) => {
         }
         const inventory = await Inventory.find({ organisation: req.user.userId })
             .populate('donor')
-            .populate('hospital')
+            .populate('school')
             .sort({ createdAt: -1 })
         return res.status(200).json({
             success: true,
@@ -185,17 +185,17 @@ const getDonors = async (req, res) => {
 const getHospitalController = async (req, res) => {
     try {
         const organisation = req.user.userId
-        const hospitalId = await InventoryModel.distinct("hospital", {
+        const schoolId = await InventoryModel.distinct("school", {
             organisation
         })
 
         // console.log(donorId);
-        const hospitals = await UserModel.find({ _id: { $in: hospitalId } })
+        const schools = await UserModel.find({ _id: { $in: schoolId } })
         // console.log(hospitals);
         return res.status(200).json({
             success: true,
-            message: "Hospital Records Fetched Successfully",
-            hospitals
+            message: "School Records Fetched Successfully",
+            schools
         })
 
 
@@ -204,7 +204,7 @@ const getHospitalController = async (req, res) => {
         console.log(error)
         return res.status(500).json({
             success: false,
-            message: "Error getting hospital records",
+            message: "Error getting school records",
             error
         })
     }
@@ -238,23 +238,23 @@ const getOrganisationController = async (req, res) => {
 
 const getOrganisationForHospitalController = async (req, res) => {
     try {
-        const hospital = req.user.userId
+        const school = req.user.userId
         const orgId = await InventoryModel.distinct("organisation", {
-            hospital
+            school
         })
 
         const organisations = await UserModel.find({ _id: { $in: orgId } })
 
         return res.status(200).json({
             success: true,
-            message: " Hospital Organisation Records Fetched Successfully",
+            message: " school Organisation Records Fetched Successfully",
             organisations
         })
     } catch (error) {
         console.log(error)
         return res.status(500).json({
             success: false,
-            message: "Error getting hospital Organisation records",
+            message: "Error getting school Organisation records",
             error
         })
     }
@@ -278,12 +278,12 @@ const getInventoryHospitalController = async (req, res) => {
 
         const inventory = await Inventory.find(req.body.filters)
             .populate('donor')
-            .populate('hospital')
+            .populate('school')
             .populate('organisation')
             .sort({ createdAt: -1 })
         return res.status(200).json({
             success: true,
-            message: "get  hospital consumer  records successfully",
+            message: "get  school consumer  records successfully",
             inventory
         })
 

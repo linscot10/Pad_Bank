@@ -24,20 +24,20 @@ const getDonorsListController = async (req, res) => {
 const getHospitalListController = async (req, res) => {
 
     try {
-        const hospitalData = await User
-            .find({ role: 'hospital' })
+        const SchoolData = await User
+            .find({ role: 'school' })
             .sort({ createdAt: -1 })
         return res.status(200).json({
             success: true,
-            TotalCount: hospitalData.length,
-            message: 'Hospital List fetched successfully',
-            hospitalData
+            TotalCount: SchoolData.length,
+            message: 'Schools List fetched successfully',
+            SchoolData
         })
     } catch (error) {
         console.error("something Happened ", error)
         return res.status(500).json({
             success: false,
-            message: "Error in getting Hospital List",
+            message: "Error in getting School List",
             error
         })
     }
@@ -103,7 +103,7 @@ const deleteOrganisationController = async (req, res) => {
         await User.findByIdAndDelete(req.params.id)
         return res.status(200).json({
             success: true,
-            message: 'Hospital Record Deleted successfully',
+            message: 'School Record Deleted successfully',
 
         })
     } catch (error) {
