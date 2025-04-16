@@ -12,7 +12,7 @@ const Form = ({ formType, submitBtn, formTitle }) => {
     const [role, setRole] = useState('donor')
     const [name, setName] = useState('')
     const [organisationName, setOrganisationName] = useState('')
-    const [hospitalName, setHospitalName] = useState('')
+    const [schoolName, setSchoolName] = useState('')
     const [website, setWebsite] = useState('')
     const [address, setAddress] = useState('')
     const [phone, setPhone] = useState('')
@@ -21,13 +21,13 @@ const Form = ({ formType, submitBtn, formTitle }) => {
             <form onSubmit={(e) => {
                 if (formType === 'login') return handleLogin(e, email, password, role)
                 else if (formType === 'register') return handleRegister(e,
-                    
+
                     name,
                     email,
                     password,
                     role,
                     organisationName,
-                    hospitalName,
+                    schoolName,
                     website,
                     address,
                     phone)
@@ -69,7 +69,7 @@ const Form = ({ formType, submitBtn, formTitle }) => {
                             onChange={(e) => setRole(e.target.value)}
 
                         />
-                        <label htmlFor='hospitalRadio' className='form-check-label'>Hospital</label>
+                        <label htmlFor='hospitalRadio' className='form-check-label'>School</label>
                     </div>
                     <div className='form-check ms-2'>
                         <input
@@ -141,12 +141,12 @@ const Form = ({ formType, submitBtn, formTitle }) => {
                                     {
                                         role === 'hospital' && (
                                             <InputType
-                                                labelText={"Hospital Name"}
+                                                labelText={"School Name"}
                                                 labelFor={'forHospitalName'}
                                                 inputType={'text'}
-                                                name={'hospitalName'}
-                                                value={hospitalName}
-                                                onChange={(e) => setHospitalName(e.target.value)}
+                                                name={'schoolName'}
+                                                value={schoolName}
+                                                onChange={(e) => setSchoolName(e.target.value)}
                                             />
                                         )
                                     }
