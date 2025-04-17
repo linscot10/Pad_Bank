@@ -52,7 +52,7 @@ const HospitalList = () => {
                 <tbody>
                     {Array.isArray(data) && data.length > 0 ? (data?.map((record) => (
                         <tr key={record._id}>
-                            <td>{record.name || record.hospitalName}</td>
+                            <td>{record.name || record.schoolName}</td>
                             <td>{record.email}</td>
                             <td>{record.phone}</td>
                             <td>{moment(record.createdAt).format("DD/MM/YYYY hh:mm A")}</td>

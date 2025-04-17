@@ -10,7 +10,7 @@ const OrgList = () => {
             const { data } = await Api.get('/admin/org-list')
             // console.log(data)
             if (data?.success) {
-                setData(data?.organisationData)
+                setData(data?.governmentData)
             }
             // setData(data)
         } catch (error) {

@@ -32,7 +32,7 @@ const Home = () => {
     useEffect(() => {
         getBloodRecords();
         console.log("User role: ", user?.role);
-        if (user?.role === "admin" || user?.role === "organisation")  {
+        if (user?.role === "admin" || user?.role === "government")  {
             // navigate("/admin");
         }
     }, [user?.role, navigate]
@@ -71,7 +71,7 @@ const Home = () => {
                             <tbody>
                                 {Array.isArray(data) && data.length > 0 ? (data?.map((record) => (
                                     <tr key={record._id}>
-                                        <td>{record.bloodGroup}</td>
+                                        <td>{record.sanitaryPad}</td>
                                         <td>{record.inventoryType}</td>
                                         <td>{record.quantity} </td>
                                         <td>{record.email}</td>

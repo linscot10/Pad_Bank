@@ -11,7 +11,7 @@ const Form = ({ formType, submitBtn, formTitle }) => {
     const [password, setPassword] = useState('')
     const [role, setRole] = useState('donor')
     const [name, setName] = useState('')
-    const [organisationName, setOrganisationName] = useState('')
+    const [governmentName, setGovernmentName] = useState('')
     const [schoolName, setSchoolName] = useState('')
     const [website, setWebsite] = useState('')
     const [address, setAddress] = useState('')
@@ -26,7 +26,7 @@ const Form = ({ formType, submitBtn, formTitle }) => {
                     email,
                     password,
                     role,
-                    organisationName,
+                    governmentName,
                     schoolName,
                     website,
                     address,
@@ -64,24 +64,24 @@ const Form = ({ formType, submitBtn, formTitle }) => {
                             type='radio'
                             className='form-check-input'
                             name='role'
-                            id='hospitalRadio'
-                            value={'hospital'}
+                            id='schoolRadio'
+                            value={'school'}
                             onChange={(e) => setRole(e.target.value)}
 
                         />
-                        <label htmlFor='hospitalRadio' className='form-check-label'>School</label>
+                        <label htmlFor='schoolRadio' className='form-check-label'>School</label>
                     </div>
                     <div className='form-check ms-2'>
                         <input
                             type='radio'
                             className='form-check-input'
                             name='role'
-                            id='organisationRadio'
-                            value={'organisation'}
+                            id='governmentRadio'
+                            value={'government'}
                             onChange={(e) => setRole(e.target.value)}
 
                         />
-                        <label htmlFor='organisationRadio' className='form-check-label'>Organisation</label>
+                        <label htmlFor='governmentRadio' className='form-check-label'>Government</label>
                     </div>
                 </div>
 
@@ -127,22 +127,22 @@ const Form = ({ formType, submitBtn, formTitle }) => {
                                     )}
 
                                     {
-                                        role === 'organisation' && (
+                                        role === 'government' && (
                                             <InputType
-                                                labelText={"Organisation Name"}
-                                                labelFor={'forOrganisationName'}
+                                                labelText={"Government Name"}
+                                                labelFor={'forGovernmentName'}
                                                 inputType={'text'}
-                                                name={'organisationName'}
-                                                value={organisationName}
-                                                onChange={(e) => setOrganisationName(e.target.value)}
+                                                name={'governmentName'}
+                                                value={governmentName}
+                                                onChange={(e) => setGovernmentName(e.target.value)}
                                             />
                                         )
                                     }
                                     {
-                                        role === 'hospital' && (
+                                        role === 'school' && (
                                             <InputType
                                                 labelText={"School Name"}
-                                                labelFor={'forHospitalName'}
+                                                labelFor={'forSchoolName'}
                                                 inputType={'text'}
                                                 name={'schoolName'}
                                                 value={schoolName}

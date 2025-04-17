@@ -19,7 +19,7 @@ const inventorySchema = new mongoose.Schema({
         type: String,
         required: [true, 'Donor Email is required']
     },
-    organisation: {
+    government: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: function () {

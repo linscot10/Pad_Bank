@@ -19,8 +19,8 @@ export const handleRegister = (
     email,
     password,
     role,
-    organisationName,
-    hospitalName,
+    governmentName,
+    schoolName,
     website,
     address,
     phone
@@ -33,8 +33,8 @@ export const handleRegister = (
             email,
             password,
             role,
-            organisationName,
-            hospitalName,
+            governmentName,
+            schoolName,
             website,
             address,
             phone

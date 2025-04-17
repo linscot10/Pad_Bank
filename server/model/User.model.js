@@ -15,7 +15,7 @@ userSchema = new mongoose.Schema({
             return false
         }
     },
-    GovernmentName: {
+    governmentName: {
         type: String,
         required: function () {
             if (this.role === 'government') {

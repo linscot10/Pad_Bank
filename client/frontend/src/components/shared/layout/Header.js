@@ -31,13 +31,13 @@ const Header = () => {
             <nav className="navbar ">
                 <div className="container-fluid">
                     <div className="navbar-brand">
-                        <BiDonateBlood color="red" /> Sanitary Pad Bank App
+                        <BiDonateBlood color="red" /> Sanitary Pad Bank 
                     </div>
                     <ul className="navbar-nav flex-row">
                         <li className="nav-item mx-3">
                             <p className="nav-link">
                                 <BiUserCircle />  Welcome {" "}
-                                {user?.name || user?.hospitalName || user?.organisationName} &nbsp;
+                                {user?.name || user?.schoolName || user?.governmentName} &nbsp;
                                 <span className="badge bg-secondary">{user?.role}</span>
                             </p>
                         </li>

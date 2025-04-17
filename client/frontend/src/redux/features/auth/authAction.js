@@ -39,8 +39,8 @@ export const userRegister = createAsyncThunk(
         email,
         password,
         role,
-        organisationName,
-        hospitalName,
+        governmentName,
+        schoolName,
         website,
         address,
         phone
@@ -51,8 +51,8 @@ export const userRegister = createAsyncThunk(
                 email,
                 password,
                 role,
-                organisationName,
-                hospitalName,
+                governmentName,
+                schoolName,
                 website,
                 address,
                 phone

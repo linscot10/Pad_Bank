@@ -13,12 +13,12 @@ export const userMenu = [
     }
     ,
     {
-        name: 'Hospital',
+        name: 'School',
         path: '/hospital',
         icon: 'fa-solid fa-hospital'
     },
     {
-        name: 'Organisation',
+        name: 'Government',
         path: '/organisation',
         icon: 'fa-sharp  fa-solid fa-building-ngo'
     }

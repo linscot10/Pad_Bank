@@ -11,7 +11,7 @@ const Analytics = () => {
         try {
             const { data } = await Api.get('/analytics/bloodGroup-data')
             if (data?.success) {
-                setData(data?.bloodGroupData)
+                setData(data?.sanitarypadData)
                 // console.log(data)
             }
 
@@ -62,7 +62,7 @@ const Analytics = () => {
 
                             </div>
                             <div className="card-footer text-light bg-dark text-center">
-                                Total Available: <b>{record.availableBlood}</b> (Ml)
+                                Total Available: <b>{record.availablesanitaryPad}</b> (Ml)
                             </div>
 
                         </div>

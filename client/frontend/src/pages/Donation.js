@@ -48,7 +48,7 @@ const Donation = () => {
                     <tbody>
                         {Array.isArray(data) && data.length > 0 ? (data?.map((record) => (
                             <tr key={record._id}>
-                                <td>{record.bloodGroup}</td>
+                                <td>{record.sanitaryPad}</td>
                                 <td>{record.inventoryType}</td>
                                 <td>{record.quantity}</td>
                                 <td>{record.email}</td>
