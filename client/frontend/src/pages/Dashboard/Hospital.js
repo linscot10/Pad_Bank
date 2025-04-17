@@ -10,7 +10,7 @@ const Hospital = () => {
             const { data } = await Api.get('/inventory/get-hospitals')
             console.log(data)
             if (data?.success) {
-                setData(data?.hospitals)
+                setData(data?.schools)
             }
             // setData(data)
         } catch (error) {
@@ -38,7 +38,7 @@ const Hospital = () => {
                 <tbody>
                     {Array.isArray(data) && data.length > 0 ? (data?.map((record) => (
                         <tr key={record._id}>
-                            <td>{record.hospitalName}</td>
+                            <td>{record.schoolName}</td>
                             <td>{record.email}</td>
                             <td>{record.phone}</td>
                             <td>{record.address}</td>

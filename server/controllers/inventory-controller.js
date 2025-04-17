@@ -23,55 +23,55 @@ const createInventoryController = async (req, res) => {
         // }
 
         if (req.body.inventoryType == 'out') {
-            const requestedBloodGroup = req.body.bloodGroup;
-            const requestedQuantityOfBlood = req.body.quantity;
-            const organisation = new mongoose.Types.ObjectId(req.user.userId)
+            const requestedsanitaryPad = req.body.sanitaryPad;
+            const requestedQuantityOfsanitaryPad = req.body.quantity;
+            const government = new mongoose.Types.ObjectId(req.user.userId)
 
-            const totalInOfRequestedBlood = await InventoryModel.aggregate([
+            const totalInOfRequestedsanitaryPad = await InventoryModel.aggregate([
                 {
                     $match: {
-                        organisation,
+                        government,
                         inventoryType: 'in',
-                        bloodGroup: requestedBloodGroup
+                        sanitaryPad: requestedsanitaryPad
                     }
                 }, {
                     $group: {
-                        _id: '$bloodGroup',
+                        _id: '$sanitaryPad',
                         total: { $sum: '$quantity' }
                     }
                 }
             ]);
-            console.log("Total In", totalInOfRequestedBlood)
+            console.log("Total In", totalInOfRequestedsanitaryPad)
 
 
 
-            const totalIn = totalInOfRequestedBlood[0]?.total || 0
+            const totalIn = totalInOfRequestedsanitaryPad[0]?.total || 0
             // calculate blood out
 
-            const totalOutOfRequestedBloodGroup = await InventoryModel.aggregate([
+            const totalOutOfRequestedsanitaryPad = await InventoryModel.aggregate([
                 {
                     $match: {
-                        organisation,
+                        government,
                         inventoryType: 'out',
-                        bloodGroup: requestedBloodGroup
+                        sanitaryPad: requestedsanitaryPad
                     }
                 }, {
                     $group: {
-                        _id: '$bloodGroup',
+                        _id: '$sanitaryPad',
                         total: { $sum: '$quantity' }
                     }
                 }
             ])
 
-            const totalOut = totalOutOfRequestedBloodGroup[0]?.total || 0
+            const totalOut = totalOutOfRequestedsanitaryPad[0]?.total || 0
 
-            const availableQuantityOfBloodGroup = totalIn - totalOut
+            const availableQuantityOfsanitaryPad = totalIn - totalOut
 
 
-            if (availableQuantityOfBloodGroup < requestedQuantityOfBlood) {
+            if (availableQuantityOfsanitaryPad < requestedQuantityOfsanitaryPad) {
                 return res.status(500).json({
                     success: false,
-                    message: `Only ${availableQuantityOfBloodGroup}ML of ${requestedBloodGroup.toUpperCase()} is available`
+                    message: `Only ${availableQuantityOfsanitaryPad}ML of ${requestedsanitaryPad.toUpperCase()} is available`
                 })
             }
             req.body.school = user?._id;
@@ -86,7 +86,7 @@ const createInventoryController = async (req, res) => {
 
         return res.status(201).json({
             success: true,
-            message: "New Blood Record Added",
+            message: "New sanitaryPad Record Added",
             data: inventory
         })
     } catch (error) {
@@ -109,7 +109,7 @@ const getInventoryController = async (req, res) => {
                 message: "Invalid userId format"
             });
         }
-        const inventory = await Inventory.find({ organisation: req.user.userId })
+        const inventory = await Inventory.find({ government: req.user.userId })
             .populate('donor')
             .populate('school')
             .sort({ createdAt: -1 })
@@ -135,7 +135,7 @@ const getRecentInventoryController = async (req, res) => {
     try {
 
         const inventory = await InventoryModel.find({
-            organisation: req.user.userId
+            government: req.user.userId
         }).limit(3).sort({ createdAt: -1 })
         // console.log(inventory)
         return res.status(200).json({
@@ -158,9 +158,9 @@ const getRecentInventoryController = async (req, res) => {
 
 const getDonors = async (req, res) => {
     try {
-        const organisation = req.user.userId
+        const government = req.user.userId
         const donorId = await InventoryModel.distinct("donor", {
-            organisation
+            government
         })
 
         // console.log(donorId);
@@ -184,9 +184,9 @@ const getDonors = async (req, res) => {
 
 const getHospitalController = async (req, res) => {
     try {
-        const organisation = req.user.userId
+        const government = req.user.userId
         const schoolId = await InventoryModel.distinct("school", {
-            organisation
+            government
         })
 
         // console.log(donorId);
@@ -214,22 +214,22 @@ const getHospitalController = async (req, res) => {
 const getOrganisationController = async (req, res) => {
     try {
         const donor = req.user.userId
-        const orgId = await InventoryModel.distinct("organisation", {
+        const orgId = await InventoryModel.distinct("government", {
             donor
         })
 
-        const organisations = await UserModel.find({ _id: { $in: orgId } })
+        const governments = await UserModel.find({ _id: { $in: orgId } })
 
         return res.status(200).json({
             success: true,
-            message: "Organisation Records Fetched Successfully",
-            organisations
+            message: "government Records Fetched Successfully",
+            governments
         })
     } catch (error) {
         console.log(error)
         return res.status(500).json({
             success: false,
-            message: "Error getting Organisation records",
+            message: "Error getting government records",
             error
         })
     }
@@ -239,16 +239,16 @@ const getOrganisationController = async (req, res) => {
 const getOrganisationForHospitalController = async (req, res) => {
     try {
         const school = req.user.userId
-        const orgId = await InventoryModel.distinct("organisation", {
+        const orgId = await InventoryModel.distinct("government", {
             school
         })
 
-        const organisations = await UserModel.find({ _id: { $in: orgId } })
+        const governments = await UserModel.find({ _id: { $in: orgId } })
 
         return res.status(200).json({
             success: true,
             message: " school Organisation Records Fetched Successfully",
-            organisations
+            governments
         })
     } catch (error) {
         console.log(error)
@@ -279,7 +279,7 @@ const getInventoryHospitalController = async (req, res) => {
         const inventory = await Inventory.find(req.body.filters)
             .populate('donor')
             .populate('school')
-            .populate('organisation')
+            .populate('government')
             .sort({ createdAt: -1 })
         return res.status(200).json({
             success: true,

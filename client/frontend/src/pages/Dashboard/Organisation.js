@@ -16,7 +16,7 @@ const Organisation = () => {
                     setData(data?.organisations)
                 }
             }
-            if (user?.role === 'hospital') {
+            if (user?.role === 'school') {
                 const { data } = await Api.get('/inventory/get-organisations-for-hospital')
                 // console.log(data)
                 if (data?.success) {

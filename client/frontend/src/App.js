@@ -78,7 +78,7 @@ function App() {
             <Organisation />
           </ProtectedRoute>
         }></Route>
-        <Route path='/admin/inventory' element={
+        <Route path='/' element={
           <ProtectedRoute>
             <Home />
           </ProtectedRoute>

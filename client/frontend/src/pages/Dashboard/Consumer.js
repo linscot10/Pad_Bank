@@ -13,7 +13,7 @@ const Consumer = () => {
             const { data } = await Api.post('/inventory/get-inventory-hospital', {
                 filters: {
                     inventoryType: 'out',
-                    hospital: user?._id
+                    school: user?._id
                 }
             })
             // console.log(data)

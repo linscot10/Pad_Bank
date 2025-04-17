@@ -45,20 +45,20 @@ const getHospitalListController = async (req, res) => {
 const getOrganisationListController = async (req, res) => {
 
     try {
-        const organisationData = await User
-            .find({ role: 'organisation' })
+        const governmentData = await User
+            .find({ role: 'government' })
             .sort({ createdAt: -1 })
         return res.status(200).json({
             success: true,
-            TotalCount: organisationData.length,
-            message: 'organisation List fetched successfully',
-            organisationData
+            TotalCount: governmentData.length,
+            message: 'government List fetched successfully',
+            governmentData
         })
     } catch (error) {
         console.error("something Happened ", error)
         return res.status(500).json({
             success: false,
-            message: "Error in getting organisation List",
+            message: "Error in getting government List",
             error
         })
     }
@@ -110,7 +110,7 @@ const deleteOrganisationController = async (req, res) => {
         console.error("something Happened ", error)
         return res.status(500).json({
             success: false,
-            message: "Error in deleting organisation record ",
+            message: "Error in deleting government record ",
             error
         })
     }

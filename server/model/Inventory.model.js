@@ -6,14 +6,14 @@ const inventorySchema = new mongoose.Schema({
         required: [true, "inventory type required"],
         enum: ["in", "out"]
     },
-    bloodGroup: {
+    sanitaryPad: {
         type: String,
-        required: [true, "Blood Group required"],
-        enum: ['O+', 'O-', 'AB+', 'AB-', 'A+', 'A-', 'B+', 'B-']
+        required: true, 
+        enum: ['Sanitary Pads']
     },
     quantity: {
         type: Number,
-        required: [true, 'blood quantity is required']
+        required: true
     },
     email: {
         type: String,
@@ -22,7 +22,9 @@ const inventorySchema = new mongoose.Schema({
     organisation: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        required: [true, 'organisation is required']
+        required: function () {
+            return this.inventoryTpe === "in"
+        }
     },
     school: {
         type: mongoose.Schema.Types.ObjectId,

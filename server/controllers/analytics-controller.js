@@ -3,18 +3,18 @@ const mongoose = require('mongoose')
 
 const bloodGroupDetailsController = async (req, res) => {
     try {
-        const bloodGroups = ['O+', 'O-', 'AB+', 'AB-', 'A+', 'A-', 'B+', 'B-']
-        const organisation = new mongoose.Types.ObjectId(req.user.userId)
-        const bloodGroupData = []
+        const sanitaryPads = ['Sanitary Pads']
+        const government = new mongoose.Types.ObjectId(req.user.userId)
+        const sanitaryPadData = []
         // const organisation = req.user.userId
 
-        await Promise.all(bloodGroups.map(async (bloodGroup) => {
+        await Promise.all(sanitaryPads.map(async (sanitaryPad) => {
             const totalIn = await InventoryModel.aggregate([
                 {
                     $match: {
-                        bloodGroup: bloodGroup,
+                        sanitaryPad: sanitaryPad,
                         inventoryType: 'in',
-                        organisation
+                        government
                     }
                 }
                 ,
@@ -30,9 +30,9 @@ const bloodGroupDetailsController = async (req, res) => {
             const totalOut = await InventoryModel.aggregate([
                 {
                     $match: {
-                        bloodGroup: bloodGroup,
+                        sanitaryPad: sanitaryPad,
                         inventoryType: 'out',
-                        organisation
+                        government
                     }
                 }
                 ,
@@ -44,13 +44,13 @@ const bloodGroupDetailsController = async (req, res) => {
                     }
                 }
             ])
-            const availableBlood = (totalIn[0]?.total || 0) - (totalOut[0]?.total || 0)
+            const availablesanitaryPad = (totalIn[0]?.total || 0) - (totalOut[0]?.total || 0)
 
-            bloodGroupData.push({
-                bloodGroup,
+            sanitaryPadData.push({
+                sanitaryPad,
                 totalIn: totalIn[0]?.total || 0,
                 totalOut: totalOut[0]?.total || 0,
-                availableBlood,
+                availablesanitaryPad,
 
             })
 
@@ -59,7 +59,7 @@ const bloodGroupDetailsController = async (req, res) => {
         return res.status(200).json({
             success: true,
             message: "Blood Records fetched Successfully",
-            bloodGroupData
+            sanitaryPadData
         })
     }
     catch (error) {
