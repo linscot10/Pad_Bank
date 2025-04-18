@@ -26,9 +26,9 @@ function App() {
         <Route path='/admin' element={
           <ProtectedRoute>
             <AdminHome />
-            
+
           </ProtectedRoute>
-          
+
         }></Route>
 
 
@@ -89,12 +89,6 @@ function App() {
           </PublicRoute>
         }></Route>
 
-        <Route path='/register' element={
-          <PublicRoute>
-            <Register />
-          </PublicRoute>
-        }></Route>
-      </Routes>
         <Route path='/register' element={
           <PublicRoute>
             <Register />
