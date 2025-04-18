@@ -95,6 +95,12 @@ function App() {
           </PublicRoute>
         }></Route>
       </Routes>
+        <Route path='/register' element={
+          <PublicRoute>
+            <Register />
+          </PublicRoute>
+        }></Route>
+      </Routes>
 
     </>
   );
