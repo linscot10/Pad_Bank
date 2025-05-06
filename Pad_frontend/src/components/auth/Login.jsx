@@ -9,55 +9,55 @@ const Login = () => {
 
     const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     try {
-    //         const res = await loginUser(formData);
-    //         const { token, user } = res;
-
-    //         // Save token and user separately
-    //         localStorage.setItem('token', token);
-    //         localStorage.setItem('user', JSON.stringify(user));
-
-    //         toast.success('Login successful');
-
-    //         // Role-based redirection
-    //         switch (user.role) {
-    //             case 'school':
-    //                 navigate('/school/dashboard');
-    //                 break;
-    //             case 'sponsor':
-    //                 navigate('/sponsor/dashboard');
-    //                 break;
-    //             case 'admin':
-    //                 navigate('/admin/dashboard');
-    //                 break;
-    //             default:
-    //                 navigate('/');
-    //         }
-
-    //     } catch (err) {
-    //         toast.error('Login failed');
-    //     }
-    // };
-
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-
-           
             const res = await loginUser(formData);
             const { token, user } = res;
+
+            // Save token and user separately
             localStorage.setItem('token', token);
             localStorage.setItem('user', JSON.stringify(res));
-            
+
             toast.success('Login successful');
-            navigate('/school/dashboard');
+
+            // Role-based redirection
+            switch (res.role) {
+                case 'school':
+                    navigate('/school/dashboard');
+                    break;
+                case 'sponsor':
+                    navigate('/sponsor/dashboard');
+                    break;
+                case 'admin':
+                    navigate('/admin/dashboard');
+                    break;
+                default:
+                    navigate('/');
+            }
+
         } catch (err) {
             toast.error('Login failed');
         }
     };
+
+
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     try {
+
+
+    //         const res = await loginUser(formData);
+    //         const { token, user } = res;
+    //         localStorage.setItem('token', token);
+    //         localStorage.setItem('user', JSON.stringify(res));
+
+    //         toast.success('Login successful');
+    //         navigate('/school/dashboard');
+    //     } catch (err) {
+    //         toast.error('Login failed');
+    //     }
+    // };
 
     return (
         <div className="row w-100 mt-5">

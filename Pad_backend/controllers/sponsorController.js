@@ -24,6 +24,21 @@ const createSponsorProfile = async (req, res) => {
     }
 };
 
+
+const getSponsorProfile = async (req, res) => {
+    try {
+        const sponsor = await Sponsor.findOne({ user: req.user._id }).populate('user', 'name email');
+
+        if (!sponsor) {
+            return res.status(404).json({ message: 'Sponsor not found' });
+        }
+
+        res.json(sponsor);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
 const donatePads = async (req, res) => {
     try {
         const sponsor = await Sponsor.findOne({ user: req.user._id });
@@ -65,5 +80,6 @@ const getMyDonations = async (req, res) => {
 module.exports = {
     createSponsorProfile,
     donatePads,
-    getMyDonations
+    getMyDonations,
+    getSponsorProfile
 };

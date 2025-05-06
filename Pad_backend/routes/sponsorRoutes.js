@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { createSponsorProfile, donatePads, getMyDonations } = require('../controllers/sponsorController');
+const { createSponsorProfile, donatePads, getMyDonations, getSponsorProfile } = require('../controllers/sponsorController');
 const protect = require('../middleware/authMiddleware');
 const authorizeRoles = require('../middleware/roleMiddleware');
 
@@ -8,6 +8,7 @@ const authorizeRoles = require('../middleware/roleMiddleware');
 router.use(protect);
 router.use(authorizeRoles('sponsor'));
 
+router.get('/profile', getSponsorProfile)
 router.post('/create-profile', createSponsorProfile);
 router.post('/donate', donatePads);
 router.get('/donations', getMyDonations);
