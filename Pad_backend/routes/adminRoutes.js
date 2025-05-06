@@ -18,10 +18,10 @@ router.use(authorizeRoles('admin'));
 router.get('/', getDashboardStats);
 router.get('/requests', getAllRequests);
 router.get('/donations', getAllDonations);
-router.post('/allocate', allocatePads);
+router.post('/allocate/:id', allocatePads);
 router.get('/inventory', getInventorySummary);
 router.get('/get-inventory', getInventorySummary);
-router.get('/add-stock', addPads);
+router.post('/add-stock', addPads);
 
 router.get('/:applicationId/disburse', disbursePads);
 

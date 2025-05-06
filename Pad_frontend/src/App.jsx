@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard';
 import PrivateRoute from './utils/PrivateRoute';
 import SchoolDashboardPage from './pages/SchoolDashboardPage';
 import SponsorDashboardPage from './pages/SponsorDashboardPage';
+import AdminDashboard from './pages/AdminDashboard';
 
 function App() {
 
@@ -18,6 +19,11 @@ function App() {
         <Route path="/sponsor/dashboard" element={
           <PrivateRoute roles={['admin', 'sponsor']}>
             <SponsorDashboardPage />
+          </PrivateRoute>
+        } />
+        <Route path="/admin/dashboard" element={
+          <PrivateRoute roles={['admin']}>
+            <AdminDashboard />
           </PrivateRoute>
         } />
         <Route path="/register" element={<Register />} />

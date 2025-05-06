@@ -337,3 +337,56 @@ button.btn {
   border-radius: 0.5rem;
   box-shadow: 0 .125rem .25rem rgba(0, 0, 0, 0.075);
 }
+
+
+/* Optional, enhances styling slightly */
+.inventory-card {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #fdfdfd;
+  border-radius: 12px;
+}
+
+/* Improve spacing and layout for mobile */
+@media (max-width: 576px) {
+  .inventory-card {
+    padding: 1.5rem;
+  }
+}
+
+
+
+.card h5 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  font-weight: bold;
+  font-size: 1.75rem;
+}
+
+.card.bg-light {
+  border: 1px solid #ddd;
+}
+
+/* Optional for extra styling */
+.list-group-item {
+  border: 1px solid #ddd;
+}
+
+/* Add custom hover effects for better interaction */
+.btn-outline-warning:hover {
+  background-color: #ffc107;
+  color: #fff;
+}
+
+.btn-outline-success:hover {
+  background-color: #28a745;
+  color: #fff;
+}
+
+/* Button Icon Size */
+.btn i {
+  font-size: 1.2rem;
+}

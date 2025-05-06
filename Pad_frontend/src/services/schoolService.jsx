@@ -12,6 +12,7 @@ export const getSchoolProfile = async (token) => {
     const res = await api.get('/schools/profile', {
         headers: { Authorization: `Bearer ${token}` }
     });
+    console.log("data:", res)
     return res.data;
 };
 
