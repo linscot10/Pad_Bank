@@ -5,8 +5,12 @@ const Dashboard = () => {
 
     return (
         <div className="container mt-4">
-            <h3>Welcome, {user?.name}</h3>
-            <p>Your role: <strong>{user?.role}</strong></p>
+            <div className="welcome-card p-4 bg-white rounded shadow-sm">
+                <h3 className="text-center mb-3">Welcome, {user?.name}</h3>
+                <p className="text-center">
+                    Your role: <strong>{user?.role}</strong>
+                </p>
+            </div>
         </div>
     );
 }

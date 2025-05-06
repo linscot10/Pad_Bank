@@ -15,6 +15,6 @@ const upload = require('../middleware/upload');
 
 router.post('/register', protect, authorizeRoles('school'), registerSchool);
 router.get('/profile', protect, authorizeRoles('school'), getSchoolProfile);
-router.post('/upload-docs', protect,  authorizeRoles('school'), upload.array('documents', 5), uploadDocuments);
+router.post('/upload-docs', protect, authorizeRoles('school'), upload.array('documents', 5), uploadDocuments);
 
 module.exports = router;

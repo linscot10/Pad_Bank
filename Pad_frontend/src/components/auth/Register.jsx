@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { registerUser } from '../../services/authService';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const Register = () => {
@@ -20,7 +20,11 @@ const Register = () => {
         e.preventDefault();
         try {
             const res = await registerUser(formData);
-            localStorage.setItem('user', JSON.stringify(res));
+            localStorage.setItem('user', JSON.stringify(res.user));
+
+            if (res.token) {
+                localStorage.setItem('token', res.token);
+            }
             toast.success('Registered successfully');
             navigate('/login');
         } catch (error) {
@@ -29,21 +33,58 @@ const Register = () => {
     };
 
     return (
-        <div className="container mt-4">
-            <h2>Register</h2>
-            <form onSubmit={handleSubmit}>
-                <input className="form-control my-2" type="text" name="name" placeholder="Name" onChange={handleChange} />
-                <input className="form-control my-2" type="email" name="email" placeholder="Email" onChange={handleChange} />
-                <input className="form-control my-2" type="password" name="password" placeholder="Password" onChange={handleChange} />
-                <select className="form-select my-2" name="role" onChange={handleChange}>
-                    <option value="school">School</option>
-                    <option value="sponsor">Sponsor</option>
-                    <option value="admin">Admin</option>
-                </select>
-                <button className="btn btn-primary mt-2">Register</button>
-            </form>
-        </div>
-    );
-};
+        <div className="container-fluid bg-light vh-100 d-flex justify-content-center align-items-center">
+            <div className="row w-100">
+                <div className="col-md-6 col-lg-4 p-4 bg-white rounded shadow-sm">
+                    <h2 className="text-center mb-4">Register</h2>
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-group">
+                            <input
+                                className="form-control my-2"
+                                type="text"
+                                name="name"
+                                placeholder="Name"
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <input
+                                className="form-control my-2"
+                                type="email"
+                                name="email"
+                                placeholder="Email"
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <input
+                                className="form-control my-2"
+                                type="password"
+                                name="password"
+                                placeholder="Password"
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <select
+                                className="form-select my-2"
+                                name="role"
+                                onChange={handleChange}
+                            >
+                                <option value=""> select role</option>
+                                <option value="school">School</option>
+                                <option value="sponsor">Sponsor</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+                        <button className="btn btn-primary w-100 mt-3">Register</button>
+                    </form>
+                    <p className='my-4 text-center'>Have an account? <Link to='/login'>login</Link></p>
+                </div>
+            </div>
+        </div >
+    )
+}
+
 
 export default Register;

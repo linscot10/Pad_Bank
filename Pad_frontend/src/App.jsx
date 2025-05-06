@@ -5,6 +5,7 @@ import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Dashboard from './pages/Dashboard';
 import PrivateRoute from './utils/PrivateRoute';
+import SchoolDashboardPage from './pages/SchoolDashboardPage';
 
 function App() {
 
@@ -12,6 +13,11 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/school/dashboard" element={
+          <PrivateRoute roles={['school', 'admin', 'sponsor']}>
+            <SchoolDashboardPage />
+          </PrivateRoute>
+        } />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route

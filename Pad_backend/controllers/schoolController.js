@@ -52,7 +52,7 @@ const uploadDocuments = async (req, res) => {
 // Get School Profile
 const getSchoolProfile = async (req, res) => {
     try {
-        const school = await School.findOne({ user: req.user._id });
+        const school = await School.findOne({ user: req.user._id }).populate('user', 'name email');
 
         if (!school) {
             return res.status(404).json({ message: 'School not found' });
