@@ -5,7 +5,7 @@ export const applyForPads = async (data, token) => {
     const res = await api.post('/applications/apply', data, {
         headers: { Authorization: `Bearer ${token}` }
     });
-    // console.log(res.data);
+    console.log("apply", res);
 
     return res.data;
 };

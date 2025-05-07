@@ -20,7 +20,11 @@ export const getAllRequests = async (token) => {
 
 // Allocate pads to an application
 export const allocatePads = async (applicationId, token) => {
-    const res = await api.post(`/admin/allocate/${applicationId}`, {}, {
+    const adminUserId = localStorage.getItem('userId');
+    const res = await api.post(`/admin/allocate/${applicationId}`, {
+        applicationId,
+        userId: adminUserId
+    }, {
         headers: { Authorization: `Bearer ${token}` }
     });
     return res.data;
@@ -28,7 +32,11 @@ export const allocatePads = async (applicationId, token) => {
 
 // Disburse pads to an application
 export const disbursePads = async (applicationId, token) => {
-    const res = await api.put(`/admin/${applicationId}/disburse`, {}, {
+    const adminUserId = localStorage.getItem('userId');
+    const res = await api.post(`/admin/${applicationId}/disburse`, {
+        applicationId,
+        userId: adminUserId
+    }, {
         headers: { Authorization: `Bearer ${token}` }
     });
     return res.data;

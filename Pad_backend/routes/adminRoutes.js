@@ -23,6 +23,6 @@ router.get('/inventory', getInventorySummary);
 router.get('/get-inventory', getInventorySummary);
 router.post('/add-stock', addPads);
 
-router.get('/:applicationId/disburse', disbursePads);
+router.post('/:applicationId/disburse', disbursePads);
 
 module.exports = router;

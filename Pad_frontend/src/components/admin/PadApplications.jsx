@@ -5,6 +5,7 @@ const PadApplications = () => {
     const [requests, setRequests] = useState([]);
     const [loading, setLoading] = useState(true);
     const token = localStorage.getItem('token');
+    const userId = localStorage.getItem('userId'); 
 
     const fetchRequests = async () => {
         try {
@@ -63,12 +64,19 @@ const PadApplications = () => {
                                         <i className="bi bi-arrow-right-circle me-2"></i> Allocate
                                     </button>
                                 )}
-                                {req.status === 'a  llocated' && (
+                                {req.status === 'allocated' && (
                                     <button
                                         className="btn btn-outline-success rounded-pill px-4 py-2"
                                         onClick={() => handleDisburse(req._id)}
                                     >
                                         <i className="bi bi-check-circle me-2"></i> Disburse
+                                    </button>
+                                )}
+                                {req.status === 'disbursed' && (
+                                    <button
+                                        className="btn btn-outline-success rounded-pill px-4 py-2"
+                                    >
+                                        <i className="bi bi-check-circle me-2"></i> ✔
                                     </button>
                                 )}
                             </div>

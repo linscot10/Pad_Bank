@@ -4,6 +4,8 @@ const School = require('../models/School');
 const applyForPads = async (req, res) => {
     try {
         const school = await School.findOne({ user: req.user._id });
+        // console.log("apply", school);
+
 
         if (!school) {
             return res.status(404).json({ message: 'School not found' });
@@ -28,6 +30,9 @@ const applyForPads = async (req, res) => {
         });
 
         school.applied = true;
+        // console.log(school.applied);
+
+
         await school.save();
         await application.save();
 
@@ -46,6 +51,7 @@ const applyForPads = async (req, res) => {
 const getApplicationStatus = async (req, res) => {
     try {
         const school = await School.findOne({ user: req.user._id });
+        // console.log("apply", school);
         if (!school) return res.status(404).json({ message: 'School not found' });
 
         const application = await PadApplication.findOne({ school: school._id });
