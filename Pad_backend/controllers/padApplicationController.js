@@ -55,8 +55,13 @@ const getApplicationStatus = async (req, res) => {
         if (!school) return res.status(404).json({ message: 'School not found' });
 
         const application = await PadApplication.findOne({ school: school._id });
-        if (!application) return res.status(404).json({ message: 'No application found' });
-
+        if (!application) {
+            return res.json({
+                status: 'Not Applied',
+                quantityRequested: 0,
+                allocatedPads: 0
+            });
+        }
         res.json(application);
     } catch (err) {
         res.status(500).json({ error: err.message });

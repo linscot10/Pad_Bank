@@ -3,7 +3,7 @@ import React from 'react';
 
 const SchoolProfileView = ({ school }) => {
     if (!school) return <p>Loading school profile...</p>;
-    console.log("schhollP",school);
+    // console.log("schhollP",school);
 
 
     return (

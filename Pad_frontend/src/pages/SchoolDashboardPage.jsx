@@ -21,13 +21,19 @@ const SchoolDashboardPage = () => {
     }, []);
 
     const loadData = async () => {
-        const s = await getSchoolProfile(token);
-        const a = await getApplicationStatus(token);
-        setSchool(s);
-        setApplication(a);
-        if (s && s.femaleStudentCount) {
-            setFemaleStudentCount(s.femaleStudentCount); // Set femaleStudentCount when profile is fetched
+        try {
+            const s = await getSchoolProfile(token);
+            const a = await getApplicationStatus(token);
+            setSchool(s);
+            setApplication(a);
+            if (s && s.femaleStudentCount) {
+                setFemaleStudentCount(s.femaleStudentCount); // Set femaleStudentCount when profile is fetched
+            }
+
+        } catch (error) {
+            console.error("Error loading data:", error);
         }
+
     };
 
     // useEffect(() => {

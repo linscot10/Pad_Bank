@@ -15,6 +15,7 @@ export const getApplicationStatus = async (token) => {
         headers: { Authorization: `Bearer ${token}` }
     });
 
-    console.log("status:", res)
-    return res.data;
+   
+    return res.data || { status: 'Not Applied', quantityRequested: 0, allocatedPads: 0 };
+
 };

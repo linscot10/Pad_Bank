@@ -5,7 +5,7 @@ export const registerSchool = async (data, token) => {
     const res = await api.post('/schools/register', data, {
         headers: { Authorization: `Bearer ${token}` }
     });
-    
+
     return res.data;
 };
 
@@ -13,7 +13,7 @@ export const getSchoolProfile = async (token) => {
     const res = await api.get('/schools/profile', {
         headers: { Authorization: `Bearer ${token}` }
     });
-    console.log("data:", res)
+    // console.log("data:", res)
     return res.data;
 };
 
@@ -25,6 +25,6 @@ export const uploadDocuments = async (formData, token) => {
         }
 
     });
-    console.log("docs:", res)
+    // console.log("docs:", res)
     return res.data;
 };

@@ -55,6 +55,8 @@ export const getInventory = async (token) => {
     const res = await api.get('/admin/inventory', {
         headers: { Authorization: `Bearer ${token}` }
     });
+    // console.log(res);
+
     return res.data;
 };
 
@@ -63,5 +65,6 @@ export const addPads = async (data, token) => {
     const res = await api.post('/admin/add-stock', data, {
         headers: { Authorization: `Bearer ${token}` }
     });
+    // console.log(res);
     return res.data;
 };

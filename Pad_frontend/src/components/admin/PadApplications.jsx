@@ -12,7 +12,7 @@ const PadApplications = () => {
             setLoading(true); // Set loading to true before fetching
             const data = await getAllRequests(token);
             setRequests(data);
-            console.log(data)
+            // console.log(data)
         } catch (err) {
             console.error('Error fetching requests:', err);
         } finally {

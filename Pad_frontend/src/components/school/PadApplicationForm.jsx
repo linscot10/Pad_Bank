@@ -8,7 +8,7 @@ const PadApplicationForm = ({ token, femaleStudentCount }) => {
 
     useEffect(() => {
         if (femaleStudentCount) {
-            // Assuming you want to request 1 pad per female student as default
+          
             setQuantityRequested(femaleStudentCount);
         }
     }, [femaleStudentCount]);
