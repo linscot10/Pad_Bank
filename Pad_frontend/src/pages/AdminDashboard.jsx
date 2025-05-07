@@ -1,9 +1,4 @@
 import React, { useEffect, useState } from 'react';
-
-import PadApplications from '../components/admin/PadApplications';
-import InventoryManager from '../components/admin/InventoryManager';
-// import DashboardStats from '../components/admin/DashboardStats';
-import DonationsList from '../components/admin/DonationsList';
 import { getDashboardStats } from '../services/adminService';
 
 const AdminDashboard = () => {
@@ -28,7 +23,18 @@ const AdminDashboard = () => {
         <div className="container my-5">
             <h1 className="text-center mb-5">Admin Dashboard</h1>
 
-            {/* Dashboard Stats */}
+            {/* Unique Content Section */}
+            <div className="alert alert-info text-center mb-5">
+                <h4>Welcome to the Admin Dashboard!</h4>
+                <p>
+                    Here you can monitor the overall performance of the system,
+                    manage school applications, track donations, and view system health stats.
+                </p>
+                <p>
+                    <strong>Tip:</strong> Keep an eye on Pending Requests to ensure quick responses to schools.
+                </p>
+            </div>
+
             <div className="row g-4 mb-5">
                 <div className="col-md-4">
                     <div className="card text-white bg-primary h-100 p-3">
@@ -65,19 +71,6 @@ const AdminDashboard = () => {
                         <h5>Total Disbursed</h5>
                         <p className="display-6">{stats.totalDisbursed?.length || 0}</p>
                     </div>
-                </div>
-            </div>
-
-            {/* Inventory, Applications, Donations */}
-            <div className="row g-4">
-                <div className="col-md-6">
-                    <InventoryManager />
-                </div>
-                <div className="col-md-6">
-                    <PadApplications />
-                </div>
-                <div className="col-12">
-                    <DonationsList />
                 </div>
             </div>
         </div>

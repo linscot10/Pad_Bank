@@ -30,7 +30,7 @@ const Login = () => {
                     navigate('/sponsor/dashboard');
                     break;
                 case 'admin':
-                    navigate('/admin/dashboard');
+                    navigate('/admin/');
                     break;
                 default:
                     navigate('/');

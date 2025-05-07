@@ -8,7 +8,10 @@ import PrivateRoute from './utils/PrivateRoute';
 import SchoolDashboardPage from './pages/SchoolDashboardPage';
 import SponsorDashboardPage from './pages/SponsorDashboardPage';
 import AdminDashboard from './pages/AdminDashboard';
-
+import AdminLayout from './pages/AdminLayout';
+import InventoryManager from './components/admin/InventoryManager';
+import PadApplications from './components/admin/PadApplications'
+import DonationsList from './components/admin/DonationsList'
 function App() {
 
 
@@ -20,12 +23,18 @@ function App() {
           <PrivateRoute roles={['admin', 'sponsor']}>
             <SponsorDashboardPage />
           </PrivateRoute>
-        } />
-        <Route path="/admin/dashboard" element={
+        } >
+        </Route>
+        <Route path="/admin/" element={
           <PrivateRoute roles={['admin']}>
-            <AdminDashboard />
+            <AdminLayout />
           </PrivateRoute>
-        } />
+        } >
+          <Route index element={<AdminDashboard />}></Route>
+          <Route path='inventory' element={<InventoryManager />}></Route>
+          <Route path='applications' element={<PadApplications />}></Route>
+          <Route path='donations' element={<DonationsList />}></Route>
+        </Route>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
 
@@ -44,7 +53,7 @@ function App() {
         />
         <Route path="*" element={<h2>Page Not Found</h2>} />
       </Routes>
-    </Router>
+    </Router >
   )
 }
 
