@@ -7,14 +7,20 @@ const SchoolProfileView = ({ school }) => {
 
 
     return (
-        <div>
-            <h3 className="mb-3">School Profile</h3>
-            <p><strong>Name:</strong> {school.user.name}</p>
-            {/* <p><strong>Registration Number:</strong> {school.registrationNumber}</p> */}
-            <p><strong>County:</strong> {school.county}</p>
-            {/* <p><strong>Subcounty:</strong> {school.subCounty}</p> */}
-            <p><strong>Email:</strong> {school.user.email}</p>
-            {/* <p><strong>Phone:</strong> {school.phone}</p> */}
+        <div className="container mt-4">
+            <div className="card shadow-sm border-0">
+                <div className="card-header bg-primary text-white">
+                    <h3 className="mb-0">School Profile</h3>
+                </div>
+                <div className="card-body">
+                    <p className="mb-2"><strong>Name:</strong> {school.user.name}</p>
+                    {/* <p className="mb-2"><strong>Registration Number:</strong> {school.registrationNumber}</p> */}
+                    <p className="mb-2"><strong>County:</strong> {school.county}</p>
+                    {/* <p className="mb-2"><strong>Subcounty:</strong> {school.subCounty}</p> */}
+                    <p className="mb-2"><strong>Email:</strong> {school.user.email}</p>
+                    {/* <p className="mb-0"><strong>Phone:</strong> {school.phone}</p> */}
+                </div>
+            </div>
         </div>
     );
 };

@@ -15,27 +15,34 @@ const DocumentUpload = ({ token }) => {
 
     return (
         <div className="container mt-5">
-            <div className="upload-card p-4 bg-white rounded shadow-sm">
-                <h2 className="text-center mb-4">Upload Student Documents</h2>
-                <div className="form-group">
-                    <label htmlFor="fileUpload" className="form-label">Choose Documents</label>
-                    <input
-                        id="fileUpload"
-                        type="file"
-                        className="form-control-file"
-                        multiple
-                        onChange={e => setFiles(e.target.files)}
-                    />
+            <div className="row justify-content-center">
+                <div className="col-md-12 col-lg-10">
+                    <div className="upload-card p-5 bg-white rounded-4 shadow border">
+                        <h2 className="text-center mb-4 text-success fw-bold">📎 Upload Student Documents</h2>
+
+                        <div className="mb-4">
+                            <label htmlFor="fileUpload" className="form-label fw-semibold">Choose Documents (PDF, JPG, etc.)</label>
+                            <input
+                                id="fileUpload"
+                                type="file"
+                                className="form-control"
+                                multiple
+                                onChange={e => setFiles(e.target.files)}
+                            />
+                        </div>
+
+                        <button
+                            className="btn btn-success w-100 py-2 fw-semibold"
+                            onClick={handleUpload}
+                            disabled={!files}
+                        >
+                            📤 Upload Documents
+                        </button>
+                    </div>
                 </div>
-                <button
-                    className="btn btn-primary w-100 mt-3"
-                    onClick={handleUpload}
-                    disabled={!files}
-                >
-                    Upload Documents
-                </button>
             </div>
         </div>
+
     );
 };
 

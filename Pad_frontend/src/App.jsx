@@ -12,6 +12,8 @@ import AdminLayout from './pages/AdminLayout';
 import InventoryManager from './components/admin/InventoryManager';
 import PadApplications from './components/admin/PadApplications'
 import DonationsList from './components/admin/DonationsList'
+import PadApplicationPage from './components/school/PadApplicationPage';
+import SchoolDashboardLayout from './pages/SchoolDashboardLayout';
 function App() {
 
 
@@ -38,13 +40,15 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
 
-        <Route path="/school/dashboard" element={
-          <PrivateRoute roles={['school', 'admin']}>
-            <SchoolDashboardPage />
-          </PrivateRoute>
-        } />
+
+
+        <Route path="/school/" element={<PrivateRoute><SchoolDashboardLayout /></PrivateRoute>}>
+          <Route path="home" element={<SchoolDashboardPage />} />
+          <Route path="apply" element={<PadApplicationPage />} />
+          {/* More routes like status, messages etc can be added here */}
+        </Route>
         <Route
-          path="/dashboard"
+          path="/"
           element={
             <PrivateRoute roles={['school', 'admin', 'sponsor']}>
               <Dashboard />

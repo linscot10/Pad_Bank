@@ -33,16 +33,29 @@ const InventoryManager = () => {
         <div className="container mt-5">
             <div className="card shadow p-4 inventory-card">
                 <h3 className="text-center mb-4">Inventory Management</h3>
-
                 {inventory ? (
-                    <ul className="list-group mb-4">
-                        <li className="list-group-item d-flex justify-content-between align-items-center">
-                            <span><strong>Donated:</strong> {inventory.donated}</span>
-                            <span><strong>Allocated:</strong> {inventory.allocated}</span>
-                            <span><strong>Disbursed:</strong> {inventory.disbursed}</span>
-                            <span><strong>Stock Available:</strong> {inventory.stockAvailable}</span>
-                        </li>
-                    </ul>
+                    <div className="table-responsive mb-4">
+                        <table className="table table-bordered table-striped">
+                            <thead className="table-light">
+                                <tr>
+                                    <th>Donated</th>
+                                    <th>Allocated</th>
+                                    <th>Disbursed</th>
+                                    <th>Stock Available</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{inventory.donated}</td>
+                                    <td>{inventory.allocated}</td>
+                                    <td>{inventory.disbursed}</td>
+                                    <td className={inventory.stockAvailable < 0 ? 'text-danger' : ''}>
+                                        {inventory.stockAvailable}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 ) : (
                     <div>No inventory data available</div>
                 )}

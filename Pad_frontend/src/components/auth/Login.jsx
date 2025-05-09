@@ -24,7 +24,7 @@ const Login = () => {
             // Role-based redirection
             switch (res.role) {
                 case 'school':
-                    navigate('/school/dashboard');
+                    navigate('/school/');
                     break;
                 case 'sponsor':
                     navigate('/sponsor/dashboard');

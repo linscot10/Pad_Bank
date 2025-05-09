@@ -390,3 +390,67 @@ button.btn {
 .btn i {
   font-size: 1.2rem;
 }
+
+/* SchoolSidebar.css */
+.sidebar {
+  background-color: #343a40;
+  color: white;
+  min-width: 250px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.sidebar .nav-link {
+  color: #f8f9fa;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar .nav-link.active,
+.sidebar .nav-link:hover {
+  background-color: #495057;
+  border-radius: 5px;
+  color: white;
+}
+
+.profile-form-card {
+  background: #fefefe;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.profile-form-card:hover {
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.25);
+}
+
+.upload-card {
+  background: #fefefe;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.upload-card:hover {
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+input[type="file"]::file-selector-button {
+  background-color: #198754;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background-color: #157347;
+}
