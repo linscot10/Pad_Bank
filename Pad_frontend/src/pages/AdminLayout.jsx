@@ -7,7 +7,9 @@ const AdminLayout = () => {
     return (
         <div className="d-flex">
             <Sidebar />
-            <div className="flex-grow-1 p-4 bg-light" style={{ minHeight: '100vh' }}>
+            
+
+            <div className="flex-grow-1 p-4 bg-light" style={{ marginLeft: '250px', padding: '20px', width: '100%' }}>
                 <Outlet />
             </div>
         </div>

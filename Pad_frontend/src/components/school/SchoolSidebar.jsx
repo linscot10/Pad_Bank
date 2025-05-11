@@ -12,7 +12,7 @@ const SchoolSidebar = () => {
                         to="home"
                         className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
                     >
-                        Profile 
+                        Profile
                     </NavLink>
                 </li>
                 <li className="nav-item mb-2">

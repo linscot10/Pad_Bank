@@ -14,19 +14,26 @@ import PadApplications from './components/admin/PadApplications'
 import DonationsList from './components/admin/DonationsList'
 import PadApplicationPage from './components/school/PadApplicationPage';
 import SchoolDashboardLayout from './pages/SchoolDashboardLayout';
+import SponsorLayout from './components/sponsor/SponsorLayout';
+import Profile from './pages/Profile';
+import Donate from './pages/Donate';
+import History from './pages/History';
 function App() {
 
 
   return (
     <Router>
       <Routes>
-
-        <Route path="/sponsor/dashboard" element={
-          <PrivateRoute roles={['admin', 'sponsor']}>
-            <SponsorDashboardPage />
+        <Route path="/sponsor" element={
+          <PrivateRoute roles={['sponsor']}>
+            <SponsorLayout />
           </PrivateRoute>
-        } >
+        }>
+          <Route path="profile" element={<Profile />} />
+          <Route path="donate" element={<Donate />} />
+          <Route path="history" element={<History />} />
         </Route>
+
         <Route path="/admin/" element={
           <PrivateRoute roles={['admin']}>
             <AdminLayout />

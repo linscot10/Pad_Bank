@@ -1,15 +1,23 @@
-// src/components/admin/Sidebar.js
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 const Sidebar = () => {
     const linkStyle = ({ isActive }) =>
-        `nav-link py-3 px-4 rounded ${isActive ? 'bg-light text-dark fw-bold' : 'text-white'
-        }`;
+        `nav-link py-3 px-4 rounded ${isActive ? 'bg-light text-dark fw-bold' : 'text-white'}`;
 
     return (
-        <div className="bg-dark text-white vh-100 p-3" style={{ width: '250px' }}>
-            <h4 className="text-center mb-4">Admin Panel</h4>
+        <div
+            className="bg-dark text-white p-3"
+            style={{
+                width: '250px',
+                height: '100vh',
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                overflowY: 'auto',
+            }}
+        >
+            <h4 className="mb-4" style={{ color: 'crimson' }}><strong>Pad Bank</strong></h4>
             <ul className="nav flex-column">
                 <li className="nav-item">
                     <NavLink to="/admin" end className={linkStyle}>Dashboard</NavLink>

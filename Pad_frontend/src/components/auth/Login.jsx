@@ -27,7 +27,7 @@ const Login = () => {
                     navigate('/school/');
                     break;
                 case 'sponsor':
-                    navigate('/sponsor/dashboard');
+                    navigate('/sponsor/');
                     break;
                 case 'admin':
                     navigate('/admin/');
