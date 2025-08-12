@@ -1,0 +1,122 @@
+/* PadApplicationForm.css */
+
+.pad-application-containe {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.application-car {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    border: 1px solid #eaeaea;
+}
+
+.application-heade {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: white;
+    padding: 1.5rem 2rem;
+}
+
+.application-heade h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.application-subtitl {
+    margin: 0.5rem 0 0;
+    opacity: 0.9;
+    font-size: 0.9rem;
+}
+
+.application-for {
+    padding: 2rem;
+}
+
+.form-grou {
+    margin-bottom: 1.5rem;
+}
+
+.form-grou label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form-grou input,
+.form-grou textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-grou input:focus,
+.form-grou textarea:focus {
+    outline: none;
+    border-color: #2575fc;
+    box-shadow: 0 0 0 3px rgba(37, 117, 252, 0.1);
+}
+
+.form-grou textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-hin {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: #666;
+    font-style: italic;
+}
+
+.submit-butto {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    transition: opacity 0.3s;
+}
+
+.submit-butto:hover {
+    opacity: 0.9;
+}
+
+.submit-butto:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+    .pad-application-containe {
+        padding: 1rem;
+    }
+
+    .application-heade {
+        padding: 1rem;
+    }
+
+    .application-for {
+        padding: 1.5rem;
+    }
+}

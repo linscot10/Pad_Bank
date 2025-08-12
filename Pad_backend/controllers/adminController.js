@@ -35,8 +35,9 @@ const getAllDonations = async (req, res) => {
 const allocatePads = async (req, res) => {
     try {
         const { applicationId } = req.body;
+        // const applicationId = req.params.id;
 
-        console.log("Received applicationId:", applicationId);
+        // console.log("Received applicationId:", applicationId);
 
 
 

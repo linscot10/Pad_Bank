@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { getAllRequests, allocatePads, disbursePads } from '../../services/adminService';
 
+import '../../../src/pad.css'
 const PadApplications = () => {
     const [requests, setRequests] = useState([]);
     const [loading, setLoading] = useState(true);
     const token = localStorage.getItem('token');
-    const userId = localStorage.getItem('userId'); 
+    const userId = localStorage.getItem('userId');
 
     const fetchRequests = async () => {
         try {
-            setLoading(true); // Set loading to true before fetching
+            setLoading(true);
             const data = await getAllRequests(token);
             setRequests(data);
-            // console.log(data)
         } catch (err) {
             console.error('Error fetching requests:', err);
         } finally {
-            setLoading(false); // Set loading to false after fetching
+            setLoading(false);
         }
     };
 
@@ -25,64 +25,107 @@ const PadApplications = () => {
     }, []);
 
     const handleAllocate = async (id) => {
-        await allocatePads(id, token);
-        fetchRequests();
+        try {
+            await allocatePads(id, token);
+            fetchRequests();
+        } catch (error) {
+            console.error('Allocation failed:', error);
+        }
     };
 
     const handleDisburse = async (id) => {
-        await disbursePads(id, token);
-        fetchRequests();
+        try {
+            await disbursePads(id, token);
+            fetchRequests();
+        } catch (error) {
+            console.error('Disbursement failed:', error);
+        }
+    };
+
+    const getStatusBadge = (status) => {
+        switch (status) {
+            case 'applied':
+                return <span className="status-badge applied">Pending Review</span>;
+            case 'allocated':
+                return <span className="status-badge allocated">Ready for Disbursement</span>;
+            case 'disbursed':
+                return <span className="status-badge disbursed">Completed</span>;
+            default:
+                return <span className="status-badge">{status}</span>;
+        }
     };
 
     return (
-        <div className="container my-1">
-            <h3 className="text-center mb-4">Pad Applications</h3>
+        <div className="pad-applications-container">
+            <div className="applications-header">
+                <h2>
+                    <i className="fas fa-clipboard-list"></i> Sanitary Pad Applications
+                </h2>
+                <p className="subtitle">Manage all school applications for sanitary pads</p>
+            </div>
 
             {loading ? (
-                <div className="text-center">
-                    <div className="spinner-border" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                    </div>
+                <div className="loading-state">
+                    <div className="spinner"></div>
+                    <p>Loading applications...</p>
                 </div>
             ) : requests.length === 0 ? (
-                <p className="text-center">No applications available at the moment.</p>
+                <div className="empty-state">
+                    <i className="fas fa-inbox"></i>
+                    <p>No applications available at the moment</p>
+                </div>
             ) : (
-                <ul className="list-group">
+                <div className="applications-list">
                     {requests.map((req) => (
-                        <li key={req._id} className="list-group-item d-flex justify-content-between align-items-center">
-                            <div>
-                                <h5>{req.school.schoolName}</h5>
-                                <p>Status: <strong>{req.status}</strong></p>
-
+                        <div key={req._id} className="application-card">
+                            <div className="application-info">
+                                <h3 className="school-name">
+                                    <i className="fas fa-school"></i> {req.school.schoolName}
+                                </h3>
+                                <div className="application-details">
+                                    <div className="detail-item">
+                                        <span className="detail-label">Requested:</span>
+                                        <span className="detail-value">{req.quantityRequested} pads</span>
+                                    </div>
+                                    <div className="detail-item">
+                                        <span className="detail-label">Status:</span>
+                                        {getStatusBadge(req.status)}
+                                    </div>
+                                    {req.reason && (
+                                        <div className="detail-item">
+                                            <span className="detail-label">Reason:</span>
+                                            <span className="detail-value">{req.reason}</span>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
-                            <div>
+
+                            <div className="application-actions">
                                 {req.status === 'applied' && (
                                     <button
-                                        className="btn btn-outline-warning me-2 rounded-pill px-4 py-2"
+                                        className="action-button allocate"
                                         onClick={() => handleAllocate(req._id)}
                                     >
-                                        <i className="bi bi-arrow-right-circle me-2"></i> Allocate
+                                        <i className="fas fa-box-open"></i> Allocate
                                     </button>
                                 )}
                                 {req.status === 'allocated' && (
                                     <button
-                                        className="btn btn-outline-success rounded-pill px-4 py-2"
+                                        className="action-button disburse"
                                         onClick={() => handleDisburse(req._id)}
                                     >
-                                        <i className="bi bi-check-circle me-2"></i> Disburse
+                                        <i className="fas fa-truck"></i> Disburse
                                     </button>
                                 )}
                                 {req.status === 'disbursed' && (
-                                    <button
-                                        className="btn btn-outline-success rounded-pill px-4 py-2"
-                                    >
-                                        <i className="bi bi-check-circle me-2"></i> ✔
+                                    <button className="action-button completed" disabled>
+                                        <i className="fas fa-check-circle"></i> Completed
                                     </button>
                                 )}
                             </div>
-                        </li>
+                        </div>
                     ))}
-                </ul>
+                </div>
             )}
         </div>
     );

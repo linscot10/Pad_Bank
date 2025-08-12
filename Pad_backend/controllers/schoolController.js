@@ -1,5 +1,6 @@
+
 const School = require('../models/School');
-const Padapplication = require('../models/PadApplication')
+const PadApplication = require('../models/PadApplication');
 
 // Create or Update School Profile
 const registerSchool = async (req, res) => {
@@ -31,9 +32,24 @@ const registerSchool = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 };
+const getApplicationHistory = async (req, res) => {
+    try {
+        const school = await School.findOne({ user: req.user._id });
+        if (!school) {
+            return res.status(404).json({ message: 'School not found' });
+        }
+
+        const history = await PadApplication.find({ school: school._id })
+            .sort({ createdAt: -1 });
+
+        res.json(history);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
 
 // Upload Student Document Paths
-
 const uploadDocuments = async (req, res) => {
     try {
         const school = await School.findOne({ user: req.user._id });
@@ -49,19 +65,44 @@ const uploadDocuments = async (req, res) => {
     }
 };
 
-// Get School Profile
+// ✅ Enhanced: Get School Profile + PadApplication Info
 const getSchoolProfile = async (req, res) => {
     try {
-        const school = await School.findOne({ user: req.user._id }).populate('user', 'name email');
+        const userId = req.user._id;
+
+        // Get the school profile with user info
+        const school = await School.findOne({ user: userId }).populate('user', 'name email');
 
         if (!school) {
             return res.status(404).json({ message: 'School not found' });
         }
 
-        res.json(school);
+        // Get the most recent pad application
+        const application = await PadApplication.findOne({ school: school._id })
+            .sort({ createdAt: -1 });
+
+        // Build the full profile
+        const profile = {
+            schoolName: school.schoolName,
+            county: school.county,
+            femaleStudentCount: school.femaleStudentCount,
+            uploadedDocs: school.uploadedDocs,
+            user: school.user, // name + email
+            numberOfGirls: application?.numberOfGirls || 0,
+            status: application?.status || 'not applied',
+            allocatedPads: application?.allocatedPads || 0
+        };
+
+        res.json(profile);
     } catch (err) {
+        console.error(err);
         res.status(500).json({ error: err.message });
     }
 };
 
-module.exports = { registerSchool, getSchoolProfile, uploadDocuments };
+module.exports = {
+    registerSchool,
+    getSchoolProfile,
+    uploadDocuments,
+    getApplicationHistory 
+};

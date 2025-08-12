@@ -1,0 +1,144 @@
+/* SponsorProfileView.css */
+
+.sponsor-profile-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.profile-header {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: white;
+    padding: 1.5rem 2rem;
+}
+
+.profile-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.profile-subtitle {
+    margin: 0.5rem 0 0;
+    opacity: 0.9;
+    font-size: 0.95rem;
+}
+
+.profile-content {
+    padding: 1.5rem 2rem;
+}
+
+.profile-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.profile-item {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.item-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6a11cb;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.item-content {
+    flex: 1;
+}
+
+.item-content h4 {
+    margin: 0 0 0.25rem 0;
+    color: #6a11cb;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.item-content p {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 1.1rem;
+}
+
+.profile-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #6a11cb;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+.profile-empty {
+    text-align: center;
+    padding: 3rem;
+    color: #7f8c8d;
+}
+
+.profile-empty i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.empty-subtext {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .sponsor-profile-card {
+        margin: 0 1rem;
+    }
+
+    .profile-header,
+    .profile-content {
+        padding: 1.25rem;
+    }
+
+    .profile-item {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .item-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}

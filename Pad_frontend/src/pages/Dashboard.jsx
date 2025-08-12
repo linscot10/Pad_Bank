@@ -1,65 +1,110 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './Dashboard.css';
 
 const Dashboard = () => {
     return (
-        <>
+        <div className="dashboard-container">
             {/* Navigation Bar */}
-            <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-                <div className="container">
-                    <Link className="navbar-brand fw-bold text-primary" to="/">SanitaryPad System</Link>
-                    <div className="ms-auto">
-                        <Link to="/register" className="btn btn-outline-primary me-2">Register</Link>
-                        <Link to="/login" className="btn btn-primary">Login</Link>
+            <nav className="dashboard-nav">
+                <div className="nav-container">
+                    <Link className="nav-brand" to="/">
+                        <i className="fas fa-heartbeat"></i> PadBank
+                    </Link>
+                    <div className="nav-actions">
+                        <Link to="/register" className="nav-btn outline">
+                            <i className="fas fa-user-plus"></i> Register
+                        </Link>
+                        <Link to="/login" className="nav-btn primary">
+                            <i className="fas fa-sign-in-alt"></i> Login
+                        </Link>
                     </div>
                 </div>
             </nav>
 
             {/* Hero Section */}
-            <header className="bg-light py-5 text-center">
-                <div className="container">
-                    <h1 className="display-5 fw-bold text-primary">Empowering Girls Through Access</h1>
-                    <p className="lead mt-3 text-muted">
-                        A digital platform for managing school profiles, uploading student documents, and applying for sanitary pads with ease and transparency.
+            <header className="dashboard-hero">
+                <div className="hero-content">
+                    <h1>
+                        <span className="hero-highlight">Empowering Girls</span> Through Dignity & Access
+                    </h1>
+                    <p className="hero-subtitle">
+                        A digital platform connecting schools with sanitary pad resources, ensuring no girl misses school due to menstruation.
                     </p>
-                    <Link to="/register" className="btn btn-success btn-lg mt-3">Get Started</Link>
+                    <div className="hero-cta">
+                        <Link to="/register" className="cta-btn">
+                            <i className="fas fa-rocket"></i> Get Started
+                        </Link>
+                        <Link to="/about" className="cta-link">
+                            Learn more <i className="fas fa-arrow-right"></i>
+                        </Link>
+                    </div>
                 </div>
+                <div className="hero-image"></div>
             </header>
 
             {/* Features Section */}
-            <section className="py-5">
-                <div className="container">
-                    <h2 className="text-center fw-bold mb-5">What You Can Do</h2>
-                    <div className="row text-center">
-                        <div className="col-md-4 mb-4">
-                            <div className="card p-4 shadow-sm border-0 h-100">
-                                <h5 className="text-primary fw-bold">📁 Upload Documents</h5>
-                                <p className="text-muted mt-2">Easily upload student records and documents for safe digital storage and review.</p>
+            <section className="dashboard-features">
+                <div className="features-container">
+                    <h2>
+                        <i className="fas fa-star"></i> Our Platform Features
+                    </h2>
+                    <p className="features-subtitle">
+                        Designed to streamline the process of requesting and distributing sanitary pads
+                    </p>
+
+                    <div className="features-grid">
+                        <div className="feature-card">
+                            <div className="feature-icon">
+                                <i className="fas fa-file-upload"></i>
                             </div>
+                            <h3>Document Upload</h3>
+                            <p>
+                                Securely upload and manage student records with our encrypted document management system.
+                            </p>
                         </div>
-                        <div className="col-md-4 mb-4">
-                            <div className="card p-4 shadow-sm border-0 h-100">
-                                <h5 className="text-primary fw-bold">🏫 Manage School Profiles</h5>
-                                <p className="text-muted mt-2">Register and maintain accurate information about schools and student demographics.</p>
+
+                        <div className="feature-card">
+                            <div className="feature-icon">
+                                <i className="fas fa-school"></i>
                             </div>
+                            <h3>School Profiles</h3>
+                            <p>
+                                Maintain accurate school information and track student demographics for better resource allocation.
+                            </p>
                         </div>
-                        <div className="col-md-4 mb-4">
-                            <div className="card p-4 shadow-sm border-0 h-100">
-                                <h5 className="text-primary fw-bold">💼 Apply for Pads</h5>
-                                <p className="text-muted mt-2">Submit pad requests based on the number of girls and track distribution status.</p>
+
+                        <div className="feature-card">
+                            <div className="feature-icon">
+                                <i className="fas fa-box-open"></i>
                             </div>
+                            <h3>Pad Requests</h3>
+                            <p>
+                                Submit and track sanitary pad requests with real-time status updates and notifications.
+                            </p>
                         </div>
                     </div>
                 </div>
             </section>
 
             {/* Footer */}
-            <footer className="bg-white border-top py-4 mt-5 text-center text-muted">
-                <div className="container">
-                    &copy; {new Date().getFullYear()} SanitaryPad Distribution System. All rights reserved.
+            <footer className="dashboard-footer">
+                <div className="footer-content">
+                    <div className="footer-logo">
+                        <i className="fas fa-heartbeat"></i> PadBank
+                    </div>
+                    <div className="footer-links">
+                        <Link to="/about">About Us</Link>
+                        <Link to="/contact">Contact</Link>
+                        <Link to="/privacy">Privacy Policy</Link>
+                        <Link to="/terms">Terms</Link>
+                    </div>
+                    <div className="footer-copyright">
+                        &copy; {new Date().getFullYear()} PadBank  Distribution System. All rights reserved.
+                    </div>
                 </div>
             </footer>
-        </>
+        </div>
     );
 };
 

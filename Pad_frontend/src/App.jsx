@@ -18,6 +18,8 @@ import SponsorLayout from './components/sponsor/SponsorLayout';
 import Profile from './pages/Profile';
 import Donate from './pages/Donate';
 import History from './pages/History';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 function App() {
 
 
@@ -52,7 +54,7 @@ function App() {
         <Route path="/school/" element={<PrivateRoute><SchoolDashboardLayout /></PrivateRoute>}>
           <Route path="home" element={<SchoolDashboardPage />} />
           <Route path="apply" element={<PadApplicationPage />} />
-          {/* More routes like status, messages etc can be added here */}
+          
         </Route>
         <Route
           path="/"

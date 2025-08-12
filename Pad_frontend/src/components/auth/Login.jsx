@@ -2,20 +2,22 @@ import React, { useState } from 'react';
 import { loginUser } from '../../services/authService';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import './Login.css'; 
 
 const Login = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({ email: '', password: '' });
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
         try {
             const res = await loginUser(formData);
-            const { token, user } = res;
+            const { token } = res;
 
-            // Save token and user separately
             localStorage.setItem('token', token);
             localStorage.setItem('user', JSON.stringify(res));
 
@@ -35,56 +37,79 @@ const Login = () => {
                 default:
                     navigate('/');
             }
-
         } catch (err) {
-            toast.error('Login failed');
+            toast.error(err.response?.data?.message || 'Login failed. Please check your credentials.');
+        } finally {
+            setIsLoading(false);
         }
     };
 
-
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     try {
-
-
-    //         const res = await loginUser(formData);
-    //         const { token, user } = res;
-    //         localStorage.setItem('token', token);
-    //         localStorage.setItem('user', JSON.stringify(res));
-
-    //         toast.success('Login successful');
-    //         navigate('/school/dashboard');
-    //     } catch (err) {
-    //         toast.error('Login failed');
-    //     }
-    // };
-
     return (
-        <div className="row w-100 mt-5">
-            <div className="col-md-6 col-lg-4 p-4 bg-white rounded shadow-sm">
-                <h2 className="text-center mb-4">Login</h2>
-                <form onSubmit={handleSubmit}>
+        <div className="login-container">
+            <div className="login-card">
+                <div className="login-header">
+                    <h2>
+                        <i className="fas fa-sign-in-alt"></i> Welcome Back
+                    </h2>
+                    <p>Sign in to your account to continue</p>
+                </div>
+
+                <form onSubmit={handleSubmit} className="login-form">
                     <div className="form-group">
+                        <label htmlFor="email">
+                            <i className="fas fa-envelope"></i> Email Address
+                        </label>
                         <input
-                            className="form-control my-2"
+                            id="email"
                             type="email"
                             name="email"
-                            placeholder="Email"
+                            placeholder="Enter your email"
+                            value={formData.email}
                             onChange={handleChange}
+                            required
                         />
                     </div>
+
                     <div className="form-group">
+                        <label htmlFor="password">
+                            <i className="fas fa-lock"></i> Password
+                        </label>
                         <input
-                            className="form-control my-2"
+                            id="password"
                             type="password"
                             name="password"
-                            placeholder="Password"
+                            placeholder="Enter your password"
+                            value={formData.password}
                             onChange={handleChange}
+                            required
                         />
                     </div>
-                    <button className="btn btn-success w-100 mt-3">Login</button>
+
+                    <button 
+                        type="submit" 
+                        className="login-button"
+                        disabled={isLoading || !formData.email || !formData.password}
+                    >
+                        {isLoading ? (
+                            <>
+                                <i className="fas fa-spinner fa-spin"></i> Signing In...
+                            </>
+                        ) : (
+                            <>
+                                <i className="fas fa-sign-in-alt"></i> Sign In
+                            </>
+                        )}
+                    </button>
+
+                    <div className="login-footer">
+                        <p>
+                            Don't have an account? <Link to="/register">Register here</Link>
+                        </p>
+                        <p>
+                            <Link to="/forgot-password">Forgot password?</Link>
+                        </p>
+                    </div>
                 </form>
-                <p className='my-4 text-center'>dont have  an account? <Link to='/register'>register</Link></p>
             </div>
         </div>
     );

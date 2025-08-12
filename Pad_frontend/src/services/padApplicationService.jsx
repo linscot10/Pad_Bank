@@ -19,3 +19,11 @@ export const getApplicationStatus = async (token) => {
     return res.data || { status: 'Not Applied', quantityRequested: 0, allocatedPads: 0 };
 
 };
+
+export const getApplicationHistory = async (token) => {
+    const res = await api.get('/schools/applications/history', {
+        headers: { Authorization: `Bearer ${token}` }
+    });
+
+    return res.data;
+};
